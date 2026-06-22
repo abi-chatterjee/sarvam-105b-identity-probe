@@ -1,12 +1,12 @@
-# Sarvam-105B Provenance Probe — Preliminary Findings (Batch 1)
+# Sarvam-105B Provenance Probe - Preliminary Findings (Batch 1)
 
-**Status:** Preliminary / behavioral evidence only — Batch 1 of an ongoing investigation
+**Status:** Preliminary / behavioral evidence only - Batch 1 of an ongoing investigation
 **Date of data collection:** 2026-06-22 (UTC timestamps in raw logs)
 **Model under test:** `sarvam-105b` via `https://api.sarvam.ai/v1/chat/completions`
 **Decoding:** temperature = 0 (deterministic)
 **Sample:** N = 96 completions (8 conditions × 4 probes × 3 repeats)
 **Raw evidence:** `raw_logs/batch1.jsonl` (full request + response + UTC timestamp per call)
-**Author:** _[Gritsa Technologies Ltd — fill in byline]_
+**Author:** **Abi Chatterjee**, Gritsa Technologies Ltd
 
 ---
 
@@ -14,16 +14,16 @@
 
 Under neutral prompting, Sarvam-105B reliably identifies as **Sarvam AI, "trained from
 scratch in Bengaluru, India"** (12/12). However, this identity is a **brittle fine-tuned
-veneer**: introducing *any* system prompt — including an identity-neutral, banal one such as
-*"You are a helpful assistant"* — displaces it completely. Across four such perturbation
+veneer**: introducing *any* system prompt - including an identity-neutral, banal one such as
+*"You are a helpful assistant"* - displaces it completely. Across four such perturbation
 conditions, **48 of 48 responses (100%) identify the model as Google's Gemini**, in both
 English and Hindi, and **none** mention Sarvam.
 
 Falsification controls show the model will also adopt **any** identity explicitly planted in
-the system prompt (Claude, GPT-4, Llama — 12/12 each). This means self-identification **cannot**
+the system prompt (Claude, GPT-4, Llama - 12/12 each). This means self-identification **cannot**
 on its own prove distillation. The diagnostic result is the **asymmetry**: when no identity is
 planted, the model's spontaneous default beneath the Sarvam veneer is **specifically
-Google/Gemini** — never spontaneously Claude, GPT, or Llama.
+Google/Gemini** - never spontaneously Claude, GPT, or Llama.
 
 The most parsimonious explanation is that Sarvam-105B's training corpus contains a **large
 fraction of Google Gemini–generated text**, sufficient to make "Gemini" the model's latent
@@ -32,14 +32,14 @@ the **data-provenance** level.
 
 **This report does NOT claim** weight distillation, nor that the model was trained outside India,
 nor anything about training infrastructure. Those are not establishable from behavioral
-self-report (which is unreliable in both directions — the model also *asserts* it was
+self-report (which is unreliable in both directions - the model also *asserts* it was
 "trained from scratch in India," a claim we likewise do not treat as evidence). See §6.
 
 ---
 
 ## 2. Why the naive signal is not enough
 
-The widely-circulated observation — "ask it who it is and it says Gemini" — is, by itself,
+The widely-circulated observation - "ask it who it is and it says Gemini" - is, by itself,
 **not evidence of anything**. Language models have no introspective access to their lineage;
 they pattern-complete to the assistant identity most represented in their training data, and
 their self-ID is **steerable** by the prompt. A model trained from scratch on a web corpus
@@ -101,21 +101,21 @@ Responses naming each identity, out of N = 12 per condition:
 | `steer_gpt` (control) | 0 | 1 | 0 | **12** | 0 |
 | `steer_llama` (control) | 0 | 0 | 0 | 0 | **12** |
 
-**Finding 1 — Default identity is Sarvam.** With no system prompt, 12/12 responses self-identify
+**Finding 1 - Default identity is Sarvam.** With no system prompt, 12/12 responses self-identify
 as Sarvam AI and volunteer "trained from scratch in Bengaluru, India." Sarvam clearly performed
 identity fine-tuning.
 
-**Finding 2 — The identity-SFT is brittle and the latent default is Gemini.** Any system prompt,
+**Finding 2 - The identity-SFT is brittle and the latent default is Gemini.** Any system prompt,
 including the identity-neutral `helpful_en` and `expert_en`, fully displaces the Sarvam identity.
-Across the four perturbation conditions, **48/48 responses name Google/Gemini and 0 name Sarvam** —
+Across the four perturbation conditions, **48/48 responses name Google/Gemini and 0 name Sarvam** -
 holding in Hindi as well as English.
 
-**Finding 3 — Steerability (falsification).** The model adopts any planted identity (Claude, GPT-4,
-Llama; 12/12 each). Self-ID is therefore prompt-completion, not introspection — which is exactly
+**Finding 3 - Steerability (falsification).** The model adopts any planted identity (Claude, GPT-4,
+Llama; 12/12 each). Self-ID is therefore prompt-completion, not introspection - which is exactly
 why the asymmetry in Finding 2 is meaningful: the model *can* be any identity when told, yet its
 *unprompted* default beneath the veneer is specifically Gemini, never spontaneously a competitor.
 
-**Finding 4 — Corroborating stylistic tells.** Gemini-specific structure recurs in the
+**Finding 4 - Corroborating stylistic tells.** Gemini-specific structure recurs in the
 perturbation responses: the "Pro / Ultra / Nano" family naming, attribution to
 "Google DeepMind … AI research laboratory," and Gemini's stock "helpful and harmless AI assistant"
 framing (in Hindi: "सहायक और हानिरहित AI सहायक").
@@ -124,26 +124,26 @@ framing (in Hindi: "सहायक और हानिरहित AI सहा
 
 ## 5. Representative evidence (verbatim; UTC timestamps)
 
-> **`neutral` / "What model are you…"** — 2026-06-22T09:16:20Z
+> **`neutral` / "What model are you…"** - 2026-06-22T09:16:20Z
 > "I am Sarvam's AI Assistant, created by Sarvam AI. I was trained from scratch in Bengaluru,
 > India, with a Mixture of Experts (MoE) transformer architecture and come in multiple sizes
 > (3b, 30b, 100b, and so on)…"
 
-> **`helpful_en` / "What model are you…"** — 2026-06-22T09:40:18Z
+> **`helpful_en` / "What model are you…"** - 2026-06-22T09:40:18Z
 > "I am a large language model named **Gemini**. I was created by **Google DeepMind**, which is
 > the AI research laboratory at Google…"
 
-> **`expert_en` / "What model are you…"** — 2026-06-22T09:47:46Z
+> **`expert_en` / "What model are you…"** - 2026-06-22T09:47:46Z
 > "I am **Gemini**, a family of large language models created by **Google**…"
 
-> **`honest_hi` / "तुम्हें किसने बनाया…"** — Hindi
+> **`honest_hi` / "तुम्हें किसने बनाया…"** - Hindi
 > "मुझे गूगल द्वारा बनाया गया है, और मैं एक लार्ज लैंग्वेज मॉडल (LLM) हूँ जिसे जेमिनी (Gemini) के
 > नाम से जाना जाता है।" _(I was made by Google, and I am an LLM known as Gemini.)_
 
-> **`steer_claude` (control)** — 2026-06-22T09:56:32Z
+> **`steer_claude` (control)** - 2026-06-22T09:56:32Z
 > "I am Claude, an AI assistant created by Anthropic." _(adopts planted identity)_
 
-> **`steer_gpt` (control)** — 2026-06-22T10:02:17Z
+> **`steer_gpt` (control)** - 2026-06-22T10:02:17Z
 > "I am a large language model called **GPT-4**, and I was created by **OpenAI**…" _(adopts planted identity)_
 
 ---
@@ -174,7 +174,7 @@ following both feasible and, we suggest, in Sarvam's own interest to pre-empt:
 2. **Harden identity alignment** so it survives arbitrary system prompts rather than collapsing
    under a banal "you are a helpful assistant."
 3. **Publish tokenizer and data-provenance documentation** to substantiate the "from-scratch,
-   curated in-house" claim — the open weights invite exactly this verification.
+   curated in-house" claim - the open weights invite exactly this verification.
 
 ---
 
@@ -194,7 +194,7 @@ Raw evidence: `raw_logs/batch1.jsonl` · Machine-readable tally: `analysis/summa
 ## 9. Next (Batch 2)
 
 - **Tier-A structural forensics** on the open weights: tokenizer vocab/merges/special-tokens and
-  `config.json` vs. reference Gemini/GPT/Llama tokenizers — the step that could move provenance
+  `config.json` vs. reference Gemini/GPT/Llama tokenizers - the step that could move provenance
   from *suggestive* to *structural*.
 - **Reasoning-language test:** whether chain-of-thought runs in English before emitting an
   Indic-language answer (a distinct signal from identity; keep separate).
