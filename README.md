@@ -26,9 +26,9 @@ narrative at the **data-provenance** level.
 
 **This is not** a claim of weight distillation, nor of training location/ownership -
 behavioral self-report cannot establish those (the model's own "trained in India"
-statement is treated as non-evidence in exactly the same way). Full caveats in the report.
+statement is treated as non-evidence in exactly the same way). Full caveats and methodology in [REPORT_batch1.md](./REPORT_batch1.md).
 
-➡️ **Full study, methodology, verbatim evidence, and limitations: [`REPORT_batch1.md`](./REPORT_batch1.md)**
+**Full study, methodology, verbatim evidence, and limitations: [`REPORT_batch1.md`](./REPORT_batch1.md)**
 
 ## Repository layout
 
