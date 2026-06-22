@@ -1,6 +1,6 @@
 # Sarvam-105B Provenance Probe
 
-**Author:** Abi Chatterjee, Gritsa Technologies Ltd
+**Author:** Abi Chatterjee
 
 A reproducible behavioral study of **identity and training-data provenance** in
 `sarvam-105b`, run against the model's public API at `https://api.sarvam.ai`.

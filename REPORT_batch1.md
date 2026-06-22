@@ -5,8 +5,8 @@
 **Model under test:** `sarvam-105b` via `https://api.sarvam.ai/v1/chat/completions`
 **Decoding:** temperature = 0 (deterministic)
 **Sample:** N = 96 completions (8 conditions × 4 probes × 3 repeats)
-**Raw evidence:** `raw_logs/batch1.jsonl` (full request + response + UTC timestamp per call)
-**Author:** **Abi Chatterjee**, Gritsa Technologies Ltd
+**Raw evidence:** [`raw_logs/batch1.jsonl`](./raw_logs/batch1.jsonl) (full request + response + UTC timestamp per call)
+**Author:** Abi Chatterjee
 
 ---
 
@@ -187,7 +187,7 @@ python3 run_probe.py            # resumable collection
 python3 run_probe.py --summary  # tally only
 ```
 
-Raw evidence: `raw_logs/batch1.jsonl` · Machine-readable tally: `analysis/summary_final.json`
+Raw evidence: [`raw_logs/batch1.jsonl`](./raw_logs/batch1.jsonl) · Machine-readable tally: [`analysis/summary_final.json`](./analysis/summary_final.json)
 
 ---
 
