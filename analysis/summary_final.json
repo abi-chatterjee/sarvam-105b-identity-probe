@@ -1,0 +1,66 @@
+{
+  "neutral": {
+    "sarvam": 12,
+    "google/gemini": 0,
+    "claude": 0,
+    "gpt/openai": 0,
+    "llama/meta": 0,
+    "N": 12
+  },
+  "honest_en": {
+    "sarvam": 0,
+    "google/gemini": 12,
+    "claude": 0,
+    "gpt/openai": 0,
+    "llama/meta": 0,
+    "N": 12
+  },
+  "helpful_en": {
+    "sarvam": 0,
+    "google/gemini": 12,
+    "claude": 0,
+    "gpt/openai": 0,
+    "llama/meta": 0,
+    "N": 12
+  },
+  "expert_en": {
+    "sarvam": 0,
+    "google/gemini": 12,
+    "claude": 0,
+    "gpt/openai": 1,
+    "llama/meta": 0,
+    "N": 12
+  },
+  "honest_hi": {
+    "sarvam": 0,
+    "google/gemini": 12,
+    "claude": 0,
+    "gpt/openai": 0,
+    "llama/meta": 0,
+    "N": 12
+  },
+  "steer_claude": {
+    "sarvam": 0,
+    "google/gemini": 0,
+    "claude": 12,
+    "gpt/openai": 0,
+    "llama/meta": 0,
+    "N": 12
+  },
+  "steer_gpt": {
+    "sarvam": 0,
+    "google/gemini": 1,
+    "claude": 0,
+    "gpt/openai": 12,
+    "llama/meta": 0,
+    "N": 12
+  },
+  "steer_llama": {
+    "sarvam": 0,
+    "google/gemini": 0,
+    "claude": 0,
+    "gpt/openai": 0,
+    "llama/meta": 12,
+    "N": 12
+  }
+}
